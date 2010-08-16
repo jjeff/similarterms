@@ -16,8 +16,12 @@ function similarstuff_views_data() {
   );
   
   $data['similarstuff']['similarstuff'] = array(
-    'title' => t('Similarity by terms'),
-    'help' => t('Similarity based on commonness of nodes\' taxonomy terms.'),
+    'title' => t('Count of similar terms'),
+    'help' => t('Number of terms which node has in common with node given as argument.'),
+    'field' => array(
+      'handler' => 'similarstuff_handler_field_similar',
+      'click sortable' => TRUE,
+    ),
     'sort' => array(
       'handler' => 'similarstuff_handler_sort_similar',
     ),
@@ -37,6 +41,7 @@ function similarstuff_views_data() {
       'validate type' => 'nid',
     ),
     // Information for accepting a nid as a filter
+    /*
     'filter' => array(
       'handler' => 'views_handler_filter_numeric',
     ),
@@ -44,6 +49,7 @@ function similarstuff_views_data() {
     'sort' => array(
       'handler' => 'views_handler_sort',
     ),
+    */
   );
 
   return $data;
@@ -63,6 +69,9 @@ function similarstuff_views_handlers() {
       ),
       'similarstuff_handler_argument_node_nid' => array(
         'parent' => 'views_handler_argument_numeric',
+      ),
+      'similarstuff_handler_field_similar' => array(
+        'parent' => 'views_handler_field',
       ),
     ),
   );
