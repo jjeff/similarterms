@@ -47,18 +47,24 @@ class similarstuff_handler_sort_similar extends views_handler_sort {
     
     if (count($tids)) {
       $this->query->add_table('term_node');
+      
       // add function to count nid occurrences based on grouping 
       $this->query->add_field(NULL, 'COUNT(node.nid)', 'node_count', array('aggregate' => TRUE));
       $this->query->add_where(0, "term_node.tid IN ($placeholders)", $tids);
+      
       // exclude the current node
       $this->query->add_where(0, 'node.nid != %d', $nid);
+      
       // sort 'em
       $this->query->add_orderby('node', 'count', $this->options['order']); // kludgey
+      
       // group 'em
       $this->query->add_groupby('nid');
+      
     }
     else {
       // no terms, create a query with zero results
+      // this is a cheat... there's got to be a better way...
       $this->query->add_where(0, 'node.nid < 0');
     }
             
