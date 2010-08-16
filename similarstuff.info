@@ -1,0 +1,6 @@
+core = "6.x"
+dependencies[] = "views"
+description = "Use Views to show similar nodes based on taxonomy terms"
+name = "Similar stuff"
+package = "Views"
+
