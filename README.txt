@@ -47,6 +47,7 @@ Results:
   - Allow limiting to specific vocabularies
   - Allow passing in of tids through arguments
   - Allow passing in of multiple nodes
+  - Add "don't show this node in results" checkbox to nid argument section
   - Create a displayable field which shows the % of similarity rather than count
   - Perhaps impose some reasonable limit on the number of tids which could/should be used a query
   
