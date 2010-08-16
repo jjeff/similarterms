@@ -2,7 +2,7 @@ Similar Stuff module for Drupal
 by Jeff Robbins / Lullabot
 ---------------------------------------
 
-This module was written as a reimplementation of the Similar By Terms (http://drupal.org/project/similarterms) module which I originally wrote for Drupal 5. The module creates lists of nodes sorted by their similarity to a given node based on commonality of taxonomy terms. However, Similar Stuff uses Views to create its database queries and display its results.
+This module was written as a reimplementation of the Similar By Terms (http://drupal.org/project/similarterms) module which I originally wrote for Drupal 5. The module creates lists of nodes sorted by their similarity to a given node based on commonality of taxonomy terms. However, Similar Stuff uses Views to create its database queries and display its results. This means that you can define what fields to show, additional sorting, filters, displays, etc. Super flexible!
 
 Usage: ---------------------------------
 There is an example default view called "Similar stuff". I recommend cloning this view as a starting spot for  most uses.
