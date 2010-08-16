@@ -21,23 +21,23 @@ Example: -------------------------------
 
 Given node:
   Node 1
-    Terms: 1, 2, 3, 4, 5, 6
+    Terms: A, B, C, D, E, F
   
 Results:
   Node 2
-    Terms: 2, 3, 4, 5, 6, 7
+    Terms: [B, C, D, E, F,] G
     (5 terms in common with given)
   Node 3
-    Terms: 1, 2, 3, 4, 5, 8
+    Terms: [A, B, C, D, E,] H
     (5 terms in common)
   Node 4
-    Terms: 2, 3, 4, 6, 9, 10, 11, 12, 13
+    Terms: [B, C, D, F,] I, J, K, L, M
     (4 terms in common)
   Node 5
-    Terms: 1, 2, 3
+    Terms: [A, B, C]
     (3 terms in common)
   Node 6
-    Terms: 1, 2, 10, 11, 12, 13, 14, 15, 16, 17
+    Terms: [A, B,] J, K, L, M, N, O, P, Q
     (2 terms in common)
     
     
