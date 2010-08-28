@@ -31,43 +31,38 @@ class similarstuff_handler_sort_similar extends views_handler_sort {
   
     //$nid = $this->view->argument['nid']->value[0];
     
-    $nid = $this->view->args[0];
+    //$nid = $this->view->args[0];
     
-    $tids = array_keys(taxonomy_node_get_terms(node_load($nid)));
-    if (count($tids)) {
-      $placeholders = implode(', ', array_fill(0, count($tids), '%d'));
-    }
-    else {
-      $placeholders = '';
-    }
+    //$tids = array_keys(taxonomy_node_get_terms(node_load($nid)));
+    //if (count($tids)) {
+      //$placeholders = implode(', ', array_fill(0, count($tids), '%d'));
+    //}
+    //else {
+      //$placeholders = '';
+    //}
     
     // @todo: if there are no terms, don't run a query
     
     //dsm($this);
     
-    if (count($tids)) {
-      $this->query->add_table('term_node');
+    //if (count($tids)) {
+      //$this->query->add_table('term_node');
       
-      // add function to count nid occurrences based on grouping 
-      $this->query->add_field(NULL, 'COUNT(node.nid)', 'node_count', array('aggregate' => TRUE));
-      $this->query->add_where(0, "term_node.tid IN ($placeholders)", $tids);
+    // add function to count nid occurrences based on grouping 
+    $this->query->add_field(NULL, 'COUNT(node.nid)', 'node_count', array('aggregate' => TRUE));
+    
+    //$this->query->add_where(0, "term_node.tid IN ($placeholders)", $tids);
+    
+    // exclude the current node
+    //$this->query->add_where(0, 'node.nid != %d', $nid);
+    
+    // sort 'em
+    $this->query->add_orderby('node', 'count', $this->options['order']); // kludgey
+    
+    // group 'em
+    $this->query->add_groupby('nid');
       
-      // exclude the current node
-      $this->query->add_where(0, 'node.nid != %d', $nid);
-      
-      // sort 'em
-      $this->query->add_orderby('node', 'count', $this->options['order']); // kludgey
-      
-      // group 'em
-      $this->query->add_groupby('nid');
-      
-    }
-    else {
-      // no terms, create a query with zero results
-      // this is a cheat... there's got to be a better way...
-      $this->query->add_where(0, 'node.nid < 0');
-    }
-            
+                
     //$nid = $this->view->args[$this->view->argument['nid']]
     //dsm($this->query);
     
