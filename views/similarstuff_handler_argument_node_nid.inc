@@ -7,7 +7,7 @@
 
 /**
  * Argument handler to accept a node id.
- * basically identical node_handler_argument_node_nid except that it doesn't
+ * based on node_handler_argument_node_nid except that it doesn't
  * add a where clause to the query
  */
 class similarstuff_handler_argument_node_nid extends views_handler_argument_numeric {
@@ -105,6 +105,16 @@ class similarstuff_handler_argument_node_nid extends views_handler_argument_nume
       $tids[$row->tid] = $row->tid;
     }
     
+    if (count($tids) == 0) {
+      // there are no terms...
+      // we need to cancel the query and bail out
+      
+      // @todo: figure out how to bail
+      
+      return;
+      
+    }
+    
     $this->query->add_table('term_node');
               
     if (count($tids) == 1) {
@@ -114,13 +124,7 @@ class similarstuff_handler_argument_node_nid extends views_handler_argument_nume
       $placeholders = implode(', ', array_fill(0, count($tids), '%d'));
       $this->query->add_where(0, "term_node.tid IN ($placeholders)", $tids);
     }
-    else {
-      // *** if there are no tids, we really should bail on the whole query ****
-      $placeholders = '';
-      //$this->query->add_where(0, "term_node.tid IN ($placeholders)", $tids);
-    }
-    
-      
+          
     // exclude the current node(s)
     // @todo: add option for this
     if (count($this->value) > 1) {
