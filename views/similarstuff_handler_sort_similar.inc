@@ -61,7 +61,6 @@ class similarstuff_handler_sort_similar extends views_handler_sort {
     
     // group 'em
     $this->query->add_groupby('nid');
-      
                 
     //$nid = $this->view->args[$this->view->argument['nid']]
     //dsm($this->query);
