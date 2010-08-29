@@ -51,24 +51,25 @@ class similarstuff_handler_argument_node_nid extends views_handler_argument_nume
 
   }
   
-  function query() {
+  function validate_arg($arg) {
   
-    $this->ensure_my_table();
-    
+    // hmmm... @todo: wildcard validation?
+    // see views_handler_argument.inc for possible code
+  
     if (!empty($this->options['break_phrase'])) {
       views_break_phrase($this->argument, $this);
     }
     else {
       $this->value = array($this->argument);
     }
-    
+        
     // $vids is array node version ids
     $vids = array();
     foreach($this->value as $nid) {
       // get the latest revision id (vid) for this node id (nid)
       $vids[] = db_result(db_query("SELECT vid FROM {node_revisions} WHERE nid = %d", $nid));
     }
-    
+        
     // $vocabs is array of vocabulary ids (a.k.a. vids, confusing right?)
     $vocabs = empty($this->options['vocabularies']) ? array() : $this->options['vocabularies'];
     foreach ($vocabs as $key => $val) {
@@ -76,7 +77,7 @@ class similarstuff_handler_argument_node_nid extends views_handler_argument_nume
         unset($vocabs[$key]);
       }
     }
-    
+        
     $addwhere = '';
     $addjoin = '';
     if (count($vocabs) == 1) {
@@ -105,16 +106,25 @@ class similarstuff_handler_argument_node_nid extends views_handler_argument_nume
       $tids[$row->tid] = $row->tid;
     }
     
+    $this->tids = $tids;
+    
     if (count($tids) == 0) {
       // there are no terms...
       // we need to cancel the query and bail out
-      
-      // @todo: figure out how to bail
-      
-      return;
-      
+      return FALSE;
     }
     
+    return TRUE;
+    
+  }
+  
+  
+  function query() {
+  
+    $this->ensure_my_table();
+        
+    $tids = $this->tids;
+  
     $this->query->add_table('term_node');
               
     if (count($tids) == 1) {
