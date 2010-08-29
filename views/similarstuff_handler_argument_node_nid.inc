@@ -29,24 +29,34 @@ class similarstuff_handler_argument_node_nid extends views_handler_argument_nume
     $options = parent::option_definition();
 
     $options['vocabularies'] = array('default' => array());
-
+    $options['include_args'] = array('default' => FALSE);
+    
     return $options;
   }
   
   function options_form(&$form, &$form_state) {
     parent::options_form($form, $form_state);
     
+    unset($form['not']);
+    
     $r = db_query('SELECT vid, name FROM {vocabulary} ORDER BY weight');
     while ($row = db_fetch_object($r)) {
       $vocabs[$row->vid] = $row->name;
     }
-
+    
     $form['vocabularies'] = array(
       '#type' => 'checkboxes',
       '#title' => t('Limit similarity to terms within these vocabularies'),
       '#description' => t('Choosing any vocabularies here will limit the terms used to calculate similarity. It is usually best NOT to limit the terms, but in some cases this is necessary. Leave all checkboxes unselected to not limit terms.'),
       '#options' => $vocabs,
       '#default_value' => empty($this->options['vocabularies']) ? array() : $this->options['vocabularies'],
+    );
+    
+    $form['include_args'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Include argument node(s) in results'),
+      '#description' => t('If selected, the node(s) passed as the argument will be included in the view results.'),
+      '#default_value' => !empty($this->options['include_args']),
     );
 
   }
@@ -136,26 +146,16 @@ class similarstuff_handler_argument_node_nid extends views_handler_argument_nume
     }
           
     // exclude the current node(s)
-    // @todo: add option for this
-    if (count($this->value) > 1) {
-      $placeholders = implode(', ', array_fill(0, count($this->value), '%d'));
-      $this->query->add_where(0, "node.nid NOT IN ($placeholders)", $this->value);
+    if (empty($this->options['include_args'])) {
+      if (count($this->value) > 1) {
+        $placeholders = implode(', ', array_fill(0, count($this->value), '%d'));
+        $this->query->add_where(0, "node.nid NOT IN ($placeholders)", $this->value);
+      }
+      else {
+        $this->query->add_where(0, 'node.nid != %d', $this->value[0]);
+      }
     }
-    else {
-      $this->query->add_where(0, 'node.nid != %d', $this->value[0]);
-    }
-    /*
-
-    if (count($this->value) > 1) {
-      $operator = empty($this->options['not']) ? 'IN' : 'NOT IN';
-      $placeholders = implode(', ', array_fill(0, sizeof($this->value), '%d'));
-      $this->query->add_where(0, "$this->table_alias.$this->real_field $operator ($placeholders)", $this->value);
-    }
-    else {
-      $operator = empty($this->options['not']) ? '=' : '!=';
-      $this->query->add_where(0, "$this->table_alias.$this->real_field $operator %d", $this->argument);
-    }
-    */
+    
   }
   
 }
