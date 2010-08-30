@@ -62,6 +62,11 @@ class similarstuff_handler_argument_node_nid extends views_handler_argument_nume
   }
   
   function validate_arg($arg) {
+    
+    // first run the inherited arg validation
+    if (!parent::validate_arg($arg)) {
+      return FALSE;
+    }
   
     // hmmm... @todo: wildcard validation?
     // see views_handler_argument.inc for possible code
@@ -117,6 +122,7 @@ class similarstuff_handler_argument_node_nid extends views_handler_argument_nume
     }
     
     $this->tids = $tids;
+    $this->view->tids = $tids;
     
     if (count($tids) == 0) {
       // there are no terms...
