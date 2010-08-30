@@ -13,32 +13,33 @@ The simplest way to set things up is to add a free tagging vocabulary to the nod
 
 - Similar Stuff's magic happens in the "Sort criteria". Simply add "Similar stuff: Count of similar terms" as your first sort criteria and results will be sorted by similarity to the node given as an argument to the view. You may also want to provide secondary sorting, so that nodes with the same number of common terms are sorted either alphabetically, or by date.
 
-- For testing purposes, there's also a field titled "Similar stuff: Count of similar terms" which shows a count of similar terms for the the listed node.
+- There's also a field titled "Similar stuff: Similarity" which shows the commonality between the terms associated with the listed nodes and those of the node being passed in as an argument. This can be output either as a percentage (recommended), or as a raw count of the number of terms which the nodes have in common.
 
-Keep in mind that the more terms used, the better for finding similarity. However, more nodes will generate slower queries. Be sure to cache blocks and Views output where possible.
+Keep in mind that the more terms used, the better for finding similarity. However, more terms will create slower database queries. Be sure to cache blocks and Views output where possible.
 
 Example: -------------------------------
 
-Given node:
+Given node (passed as argument):
   Node 1
     Terms: A, B, C, D, E, F
+    (6 terms total)
   
 Results:
   Node 2
     Terms: [B, C, D, E, F,] G
-    (5 terms in common with given)
+    (5 terms in common with given = similarity 83%)
   Node 3
     Terms: [A, B, C, D, E,] H
-    (5 terms in common)
+    (5 terms in common  = similarity 83%)
   Node 4
     Terms: [B, C, D, F,] I, J, K, L, M
-    (4 terms in common)
+    (4 terms in common = similarity 67%)
   Node 5
     Terms: [A, B, C]
-    (3 terms in common)
+    (3 terms in common = similarity 50%)
   Node 6
     Terms: [A, B,] J, K, L, M, N, O, P, Q
-    (2 terms in common)
+    (2 terms in common = similarity 33%)
     
     
 @todo
