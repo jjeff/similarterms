@@ -16,8 +16,8 @@ function similarstuff_views_data() {
   );
   
   $data['similarstuff']['similarstuff'] = array(
-    'title' => t('Count of similar terms'),
-    'help' => t('Number of terms which node has in common with node given as argument.'),
+    'title' => t('Similarity'),
+    'help' => t('Percentage/count of terms which node has in common with node given as argument.'),
     'field' => array(
       'handler' => 'similarstuff_handler_field_similar',
       'click sortable' => TRUE,
@@ -30,7 +30,7 @@ function similarstuff_views_data() {
   // nid
   $data['similarstuff']['nid'] = array(
     'title' => t('Nid'),
-    'help' => t('The node ID of the node. Use with Views of Similar Stuff.'), // The help that appears on the UI,
+    'help' => t('ID of content item(s). Passes term ids to Similar Stuff.'), // The help that appears on the UI,
     
     // Information for accepting a nid as an argument
     'argument' => array(
@@ -40,16 +40,7 @@ function similarstuff_views_data() {
       'numeric' => TRUE,
       'validate type' => 'nid',
     ),
-    // Information for accepting a nid as a filter
-    /*
-    'filter' => array(
-      'handler' => 'views_handler_filter_numeric',
-    ),
-    // Information for sorting on a nid.
-    'sort' => array(
-      'handler' => 'views_handler_sort',
-    ),
-    */
+
   );
 
   return $data;
