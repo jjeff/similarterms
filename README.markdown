@@ -47,8 +47,12 @@ Keep in mind that the more terms used, the better for finding similarity. Howeve
       Node 6
         Terms: [A, B,] J, K, L, M, N, O, P, Q
         (2 terms in common = similarity 33%)
-    
-    
-@todo
-  - Perhaps impose some reasonable limit on the number of tids which could/should be used a query
-  
+        
+
+### Alternate Uses ###
+Since this is a Views plug-in, it is possible to create listings of related images, videos, or just about anything which you can show with Views. Here are a few tricks you might try:
+
+- Related tab: Create a (page display) tab called "Related" on node pages. This page shows teaser listings of similar content.
+- Advertising using Similar By Terms: Create an "advertisement" node type with CCK fields for "image" and "URL". Add your "tags" vocabulary to this content type and create some ads. Create a block which shows the linked image of the most similar advertisement node.
+
+Other ideas? Let us know!
