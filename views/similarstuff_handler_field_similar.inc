@@ -1,7 +1,7 @@
 <?php
 // $Id: views_handler_field_counter.inc,v 1.3.2.2 2009/11/06 18:19:40 merlinofchaos Exp $
 
-class similarstuff_handler_field_similar extends views_handler_field {
+class similarterms_handler_field_similar extends views_handler_field {
   function option_definition() {
     $options = parent::option_definition();
     $options['count_type'] = array('default' => 1);

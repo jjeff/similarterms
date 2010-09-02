@@ -10,7 +10,7 @@
  * based on node_handler_argument_node_nid except that it doesn't
  * add a where clause to the query
  */
-class similarstuff_handler_argument_node_nid extends views_handler_argument_numeric {
+class similarterms_handler_argument_node_nid extends views_handler_argument_numeric {
   /**
    * Override the behavior of title(). Get the title of the node.
    */

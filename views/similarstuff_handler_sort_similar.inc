@@ -1,6 +1,6 @@
 <?php
 
-class similarstuff_handler_sort_similar extends views_handler_sort {
+class similarterms_handler_sort_similar extends views_handler_sort {
   
   function option_definition() {
     $options = parent::option_definition();

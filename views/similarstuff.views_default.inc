@@ -2,14 +2,14 @@
 /**
  * Implementation of hook_views_default_views().
  */
-function similarstuff_views_default_views() {
+function similarterms_views_default_views() {
   /*
-   * View 'similarstuff'
+   * View 'similarterms'
    */
   $view = new view;
-  $view->name = 'similarstuff';
-  $view->description = 'Similar stuff';
-  $view->tag = 'similarstuff';
+  $view->name = 'similarterms';
+  $view->description = 'Similar By Terms';
+  $view->tag = 'similarterms';
   $view->view_php = '';
   $view->base_table = 'node';
   $view->is_cacheable = FALSE;
@@ -52,11 +52,11 @@ function similarstuff_views_default_views() {
     ),
   ));
   $handler->override_option('sorts', array(
-    'similarstuff' => array(
+    'similarterms' => array(
       'order' => 'DESC',
-      'id' => 'similarstuff',
-      'table' => 'similarstuff',
-      'field' => 'similarstuff',
+      'id' => 'similarterms',
+      'table' => 'similarterms',
+      'field' => 'similarterms',
       'relationship' => 'none',
       'override' => array(
         'button' => 'Override',
@@ -79,7 +79,7 @@ function similarstuff_views_default_views() {
       'break_phrase' => 0,
       'not' => 0,
       'id' => 'nid',
-      'table' => 'similarstuff',
+      'table' => 'similarterms',
       'field' => 'nid',
       'validate_user_argument_type' => 'uid',
       'validate_user_roles' => array(
@@ -165,7 +165,7 @@ function similarstuff_views_default_views() {
   $handler->override_option('cache', array(
     'type' => 'none',
   ));
-  $handler->override_option('title', 'Similar stuff');
+  $handler->override_option('title', 'Similar By Terms');
   $handler->override_option('items_per_page', 7);
   $handler = $view->new_display('block', 'Block', 'block_1');
   $handler->override_option('block_description', '');
