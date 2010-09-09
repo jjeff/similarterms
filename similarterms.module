@@ -1,5 +1,5 @@
 <?php
-// $Id$
+// $Id: similarstuff.module,v 1.1.2.1 2010/09/09 13:37:10 jjeff Exp $
 
 /**
   * Implementation of hook_views_api.

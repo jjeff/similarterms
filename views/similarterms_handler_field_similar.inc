@@ -1,5 +1,5 @@
 <?php
-// $Id$
+// $Id: similarstuff_handler_field_similar.inc,v 1.1.2.1 2010/09/09 13:37:10 jjeff Exp $
 
 class similarterms_handler_field_similar extends views_handler_field {
   function option_definition() {
