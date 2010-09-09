@@ -1,5 +1,5 @@
 <?php
-// $Id: similarstuff_handler_sort_similar.inc,v 1.1.2.1 2010/09/09 13:37:10 jjeff Exp $
+// $Id: similarterms_handler_sort_similar.inc,v 1.1.2.1 2010/09/09 13:58:19 jjeff Exp $
 
 class similarterms_handler_sort_similar extends views_handler_sort {
   

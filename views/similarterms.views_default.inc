@@ -1,5 +1,5 @@
 <?php
-// $Id: similarstuff.views_default.inc,v 1.1.2.1 2010/09/09 13:37:10 jjeff Exp $
+// $Id: similarterms.views_default.inc,v 1.1.2.1 2010/09/09 13:58:19 jjeff Exp $
 
 /**
  * Implementation of hook_views_default_views().
