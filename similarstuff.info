@@ -1,3 +1,4 @@
+; $Id$
 core = "6.x"
 dependencies[] = "views"
 description = "Use Views to show similar content based on taxonomy terms"

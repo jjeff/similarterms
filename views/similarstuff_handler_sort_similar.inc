@@ -1,4 +1,5 @@
 <?php
+// $Id$
 
 class similarterms_handler_sort_similar extends views_handler_sort {
   
