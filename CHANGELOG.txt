@@ -1,3 +1,7 @@
+Oct 3, 2010
+  - Added UPGRADE instructions file
+  - added .install file
+
 Sept 2, 2010
   - Changed name of module to Similar By Terms 2
   - added more documentation to README and changed to markdown format
