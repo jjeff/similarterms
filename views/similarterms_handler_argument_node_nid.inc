@@ -141,7 +141,7 @@ class similarterms_handler_argument_node_nid extends views_handler_argument_nume
         
     $tids = $this->tids;
   
-    $this->query->add_table('term_node');
+    $v = $this->query->add_table('term_node');
               
     if (count($tids) == 1) {
       $this->query->add_where(0, "term_node.tid = %d", $tids);

@@ -1,3 +1,7 @@
+Dec 18, 2010
+  - Fixed bug selecting the wrong revision id
+  - Fixed notice errors in PressFlow 
+
 Oct 3, 2010
   - Added UPGRADE instructions file
   - added .install file
