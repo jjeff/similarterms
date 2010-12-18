@@ -81,8 +81,8 @@ class similarterms_handler_argument_node_nid extends views_handler_argument_nume
     // $vids is array node version ids
     $vids = array();
     foreach($this->value as $nid) {
-      // get the latest revision id (vid) for this node id (nid)
-      $vids[] = db_result(db_query("SELECT vid FROM {node_revisions} WHERE nid = %d", $nid));
+      // get the current revision id (vid) for this node id (nid)
+      $vids[] = db_result(db_query("SELECT vid FROM {node} WHERE nid = %d", $nid));
     }
         
     // $vocabs is array of vocabulary ids (a.k.a. vids, confusing right?)
